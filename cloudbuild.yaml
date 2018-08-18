@@ -1,3 +1,2 @@
 - name: "gcr.io/cloud-builders/gcloud"
-  args:
-    ["beta", "functions", "deploy", "meetup-stats", "--region=asia-northeast1"]
+  args: ["beta", "functions", "deploy", "meetup-stats", "--region=asia-northeast1"]
