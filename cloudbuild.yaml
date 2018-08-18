@@ -7,4 +7,5 @@ steps:
         "deploy",
         "meetup-stats",
         "--region=asia-northeast1",
+        "--trigger-http",
       ]
