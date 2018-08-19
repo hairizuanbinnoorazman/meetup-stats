@@ -18,7 +18,7 @@ def main(request):
     """
     client = storage.Client()
     bucket = client.get_bucket('gcpug-meetup-files')
-    blob = bucket.get_blob('keys.txt')
+    blob = bucket.get_blob('config.json')
     keys = blob.download_as_string()
     keys_json = json.loads(keys)
 
