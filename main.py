@@ -1,3 +1,6 @@
+import meetup
+
+
 def main(request):
     """HTTP Cloud Function.
     Args:
@@ -7,4 +10,5 @@ def main(request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/0.12/api/#flask.Flask.make_response>.
     """
+    meetup.get_rsvps("GCPUGSG", "251921227")
     return 'Hello, World!'
