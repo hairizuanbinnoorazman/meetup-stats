@@ -7,6 +7,7 @@ name = "pypi"
 requests = "*"
 pandas = "*"
 matplotlib = "*"
+google-cloud-storage = "*"
 
 [dev-packages]
 pylint = "*"
