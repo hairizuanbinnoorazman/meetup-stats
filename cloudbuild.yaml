@@ -7,6 +7,6 @@ steps:
         "deploy",
         "meetup-stats",
         "--region=asia-northeast1",
-        "--source https://source.developers.google.com/projects/expanded-league-162223/repos/meetup-stats/moveable-aliases/master/paths//",
+        "--source=https://source.developers.google.com/projects/expanded-league-162223/repos/meetup-stats/moveable-aliases/master/paths//",
         "--trigger-http",
       ]
