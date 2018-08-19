@@ -1,3 +1,6 @@
+import logging
+import os
+
 import meetup
 
 
@@ -11,4 +14,5 @@ def main(request):
         <http://flask.pocoo.org/docs/0.12/api/#flask.Flask.make_response>.
     """
     meetup.get_rsvps("GCPUGSG", "251921227")
+    logging.info(os.listdir())
     return 'Hello, World!'
