@@ -15,4 +15,4 @@ def main(request):
     """
     meetup.get_rsvps("GCPUGSG", "251921227")
     print(os.listdir())
-    return 'Hello, World!'
+    return 'This is a test!'
