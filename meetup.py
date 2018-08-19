@@ -18,4 +18,4 @@ def get_rsvps(group_name, event_id):
 
     fig = plt.figure()
     a = df.plot(x='time', y='attendees')
-    fig.savefig('test.png')
+    fig.savefig('/tmp/test.png')
