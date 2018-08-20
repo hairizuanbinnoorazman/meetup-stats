@@ -15,7 +15,8 @@ def get_rsvps(group_name, event_id):
     filtered_data = [{'time': datetime.fromtimestamp(
         row['updated']/1000), 'guests': row['guests'], 'attendees': row['guests']+1} for row in data if row['response'] == 'yes']
     df = pd.DataFrame(filtered_data)
+    df = df.sort_values(['time'], ascending=True)
+    df['total_attendees'] = df['attendees'].cumsum()
 
-    fig = plt.figure()
-    a = df.plot(x='time', y='attendees')
-    fig.savefig('/tmp/test.png')
+    a = df.plot(x='time', y='total_attendees')
+    plt.savefig('/tmp/test.png')
