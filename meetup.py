@@ -22,7 +22,7 @@ def get_rsvps(group_name, event_id):
     df['total_attendees'] = df['attendees'].cumsum()
 
     a = df.plot(x='time', y='total_attendees')
-    plt.title("Meetup details for %s, event: %s" % group_name, event_id)
+    plt.title("Meetup details for %s, event: %s" % (group_name, event_id))
     plt.savefig('/tmp/test.png')
 
 
