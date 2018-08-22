@@ -4,6 +4,7 @@ from datetime import datetime
 import matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
+import logging
 
 BASE_API = "https://api.meetup.com/"
 
@@ -27,9 +28,14 @@ def get_rsvps(group_name, event_id):
 
 
 def get_latest_upcoming_event(group_name):
+    logging.info("get_latest_upcoming_event: group_name:%s" % (group_name))
+
     api_endpoint = "%s%s/events" % (BASE_API, group_name)
     req = requests.get(api_endpoint)
     data = req.json()
+
+    if 'errors' in data.keys():
+        raise ValueError("Group name passed is not available")
 
     if len(data) == 0:
         raise ValueError("No ID is available to be used")
