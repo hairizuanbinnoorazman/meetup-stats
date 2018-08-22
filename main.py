@@ -17,7 +17,8 @@ def main(request):
         <http://flask.pocoo.org/docs/0.12/api/#flask.Flask.make_response>.
     """
     client = storage.Client()
-    request.form.get('text')
+    text_value = request.form.get('text')
+    logging.info(text_value)
     bucket = client.get_bucket('gcpug-meetup-files')
     blob = bucket.get_blob('config/config.json')
     keys = blob.download_as_string()
@@ -31,4 +32,4 @@ def main(request):
     slack.upload_image_to_channel(slack_token, channel_id,
                                   "/tmp/test.png")
 
-    return 'test v2!'
+    return 'test v3!'
