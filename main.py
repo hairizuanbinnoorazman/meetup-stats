@@ -16,15 +16,32 @@ def main(request):
         Response object using `make_response`
         <http://flask.pocoo.org/docs/0.12/api/#flask.Flask.make_response>.
     """
-    client = storage.Client()
+    group_name = ""
+    event_id = ""
+
     text_value = request.form.get('text')
     logging.info(text_value)
+    if text_value is not None:
+        split_text = text_value.split(" ")
+        if len(split_text) == 1:
+            group_name = split_text[0]
+            event_id = meetup.get_latest_upcoming_event(group_name)
+        else:
+            group_name = split_text[0]
+            event_id = split_text[1]
+
+    client = storage.Client()
     bucket = client.get_bucket('gcpug-meetup-files')
     blob = bucket.get_blob('config/config.json')
     keys = blob.download_as_string()
     keys_json = json.loads(keys)
 
-    meetup.get_rsvps("GCPUGSG", "251921227")
+    # TODO: Move default channel to a config file
+    if group_name == "":
+        group_name = "GCPUGSG"
+    if event_id == "":
+        event_id = "251921227"
+    meetup.get_rsvps(group_name, event_id)
 
     slack_token = keys_json['slack_token']
     slack_channel_name = keys_json['slack_channel_name']
@@ -32,4 +49,4 @@ def main(request):
     slack.upload_image_to_channel(slack_token, channel_id,
                                   "/tmp/test.png")
 
-    return 'test v3!'
+    return 'test v4!'
