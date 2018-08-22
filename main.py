@@ -17,6 +17,7 @@ def main(request):
         <http://flask.pocoo.org/docs/0.12/api/#flask.Flask.make_response>.
     """
     client = storage.Client()
+    request.form.get('text')
     bucket = client.get_bucket('gcpug-meetup-files')
     blob = bucket.get_blob('config/config.json')
     keys = blob.download_as_string()
