@@ -9,6 +9,9 @@ BASE_API = "https://api.meetup.com/"
 
 
 def get_rsvps(group_name, event_id):
+    assert isinstance(group_name, str)
+    assert isinstance(event_id, str)
+
     api_endpoint = "%s%s/events/%s/rsvps" % (BASE_API, group_name, event_id)
     req = requests.get(api_endpoint)
     data = req.json()
@@ -19,6 +22,7 @@ def get_rsvps(group_name, event_id):
     df['total_attendees'] = df['attendees'].cumsum()
 
     a = df.plot(x='time', y='total_attendees')
+    plt.title("Meetup details for %s, event: %s" % group_name, event_id)
     plt.savefig('/tmp/test.png')
 
 
