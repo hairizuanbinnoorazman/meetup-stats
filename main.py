@@ -21,7 +21,7 @@ def main(request):
 
     text_value = request.form.get('text')
     logging.info(text_value)
-    if text_value is not None:
+    if text_value is not None or text_value == "":
         split_text = text_value.split(" ")
         if len(split_text) == 1:
             group_name = split_text[0]
