@@ -34,8 +34,9 @@ def get_latest_upcoming_event(group_name):
     req = requests.get(api_endpoint)
     data = req.json()
 
-    if 'errors' in data.keys():
-        raise ValueError("Group name passed is not available")
+    if isinstance(data, dict):
+        if 'errors' in data.keys():
+            raise ValueError("Group name passed is not available")
 
     if len(data) == 0:
         raise ValueError("No ID is available to be used")
