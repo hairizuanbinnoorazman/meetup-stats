@@ -20,3 +20,19 @@ def get_rsvps(group_name, event_id):
 
     a = df.plot(x='time', y='total_attendees')
     plt.savefig('/tmp/test.png')
+
+
+def get_latest_upcoming_event(group_name):
+    api_endpoint = "%s%s/events" % (BASE_API, group_name)
+    req = requests.get(api_endpoint)
+    data = req.json()
+
+    if len(data) == 0:
+        raise ValueError("No ID is available to be used")
+
+    filtered_data = [{'time': datetime.fromtimestamp(
+        row['time']/1000), 'id': row['id']} for row in data]
+    df = pd.DataFrame(filtered_data)
+    df = df.sort_values(['time'], ascending=True)
+
+    return df['id'].iloc[0]
