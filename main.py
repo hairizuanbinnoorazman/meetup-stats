@@ -34,7 +34,9 @@ def main(request):
     text_value = request.form.get('text')
     logging.info("Text_Value: %s" % (text_value))
     try:
-        if text_value is not None or text_value != "":
+        if text_value is None or text_value == "":
+            logging.info("No Group name passed in")
+        else:
             split_text = text_value.split(" ")
             if len(split_text) == 1:
                 group_name = split_text[0]
