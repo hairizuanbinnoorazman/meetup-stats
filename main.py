@@ -34,7 +34,7 @@ def main(request):
     text_value = request.form.get('text')
     logging.info("Text_Value: %s" % (text_value))
     try:
-        if text_value is not None or text_value == "":
+        if text_value is not None or text_value != "":
             split_text = text_value.split(" ")
             if len(split_text) == 1:
                 group_name = split_text[0]
@@ -43,7 +43,6 @@ def main(request):
                 group_name = split_text[0]
                 event_id = split_text[1]
     except ValueError as e:
-        logging.error(e)
         logging.error(e)
         slack.send_text_to_channel(
             slack_token, channel_id, "Group name is unavailable. Please check again")
