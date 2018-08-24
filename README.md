@@ -12,8 +12,4 @@ This tool sets up an API endpoint that is reachable for
 
 # Deployment instruction
 
-Run the following command to update the api function
-
-```bash
-echo TODO
-```
+Deployments are done via usage of Google Cloud Builder.
