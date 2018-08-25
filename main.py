@@ -65,4 +65,4 @@ def main(request):
     slack.upload_image_to_channel(slack_token, channel_id,
                                   "/tmp/test.png")
 
-    return 'test v4!'
+    return 'test v5!'
